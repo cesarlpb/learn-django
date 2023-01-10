@@ -66,3 +66,30 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+
+## Creamos tabla en la base de datos
+
+[Más información](https://www.w3schools.com/django/django_models.php)
+
+**models.py**
+
+```python
+from django.db import models
+
+class Member(models.Model):
+    id = models.IntegerField(primary_key=True)
+    firstname = models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255)
+```
+- Crea migración: 
+```
+python manage.py makemigrations members
+```
+- Ejecuta migración:
+```
+python manage.py migrate
+```
+- Ver SQL para crear tabla:
+```
+python manage.py sqlmigrate members 0001
+```
