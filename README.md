@@ -111,3 +111,27 @@ o en mi caso:
 hello_world_app_member
 ```
 **Importante:** No se modifican las tablas de Django.
+
+## Insertar datos en la base de datos
+- Abrimos el shell interactivo de Python y Django:
+```
+python manage.py shell
+```
+- Importamos el modelo:
+```python
+from <nombre_de_la_app>.models import Member
+```
+* nombre_de_la_app: nombre de la carpeta de la app -> `members` o en mi caso `hello_world_app`
+
+- Creamos un objeto:
+```python
+member = Member(id=1, firstname='John', lastname='Doe')
+```
+- Guardamos el objeto:
+```python
+member.save()
+```
+- Verificamos que se guardó:
+```python
+Member.objects.all().values()
+```
