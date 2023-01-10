@@ -35,3 +35,34 @@ El servidor abre por defecto en `http://localhost:8000/`
 python manage.py startapp <nombre_de_tu_app>
 ```
 3. Deberías ver una carpeta con el nombre `<nombre_de_tu_app>`
+
+# Añadir un HTML
+
+Seguir los pasos de [este tutorial](https://www.w3schools.com/django/django_templates.php)
+
+1. Crear `templates` en la carpeta de la app
+2. Crear `index.html` o algún HTML en la carpeta `templates`
+3. Actualizamos `views.py`:
+```python
+from django.template import loader
+from django.http import HttpResponse
+
+def hello_world(request):
+    template = loader.get_template('hello_world.html')
+    return HttpResponse(template.render())
+```
+4. Actualizamos `settings.py`:
+```python
+INSTALLED_APPS = [
+    ...
+    '<nombre_de_carpeta_de_app>'
+    ]
+```
+5. Ejecutamos la migración:
+```
+python manage.py migrate
+```
+6. Ejecutamos el servidor de desarrollo:
+```
+python manage.py runserver
+```
