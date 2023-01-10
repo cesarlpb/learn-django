@@ -93,3 +93,21 @@ python manage.py migrate
 ```
 python manage.py sqlmigrate members 0001
 ```
+**SQLite3**
+- Para ver las tablas en SQLite3, 
+A. Desde el `shell` con sqlite3 `<nombre_de_base_de_datos>` -> `.tables`
+B. Abrir plugin de SQLite3 en VSCode -> Quick Query -> elegir base de datos y ejecutamos:
+```
+SELECT name FROM sqlite_master WHERE type='table';
+```
+Veremos algo como:
+```
+...
+members_member
+```
+o en mi caso:
+```
+...
+hello_world_app_member
+```
+**Importante:** No se modifican las tablas de Django.
