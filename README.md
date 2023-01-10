@@ -113,6 +113,9 @@ hello_world_app_member
 **Importante:** No se modifican las tablas de Django.
 
 ## Insertar datos en la base de datos
+
+[Más información](https://www.w3schools.com/django/django_insert_data.php)
+
 - Abrimos el shell interactivo de Python y Django:
 ```
 python manage.py shell
