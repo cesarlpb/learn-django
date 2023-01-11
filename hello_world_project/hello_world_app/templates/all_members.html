@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "master.html" %}
 
-<h1>All Members</h1>
-  
+{% block title %}
+Todos los miembros
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center;">Miembros</h1>
 
   {% for member in my_members %}
 <div style="text-align: center; border-top: 1px solid black;">
@@ -16,6 +19,4 @@
 </div>
   {% endfor %}
 
-
-</body>
-</html>
+{% endblock %}
