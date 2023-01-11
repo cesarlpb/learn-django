@@ -15,6 +15,11 @@ def all_members(request):
   return HttpResponse(template.render(context, request))
 
 def member(request, member_id):
+    if not isinstance(member_id, int):
+        return HttpResponse(f"Member id {member_id} no es válido. El id debe ser un entero positivo.")
+    elif member_id is None or member_id < 1:
+        return HttpResponse(f"Member id {member_id} no es válido. El id debe ser un entero positivo.")
+    
     try:
         my_member = Member.objects.get(pk=member_id)
         template = loader.get_template('member.html')
