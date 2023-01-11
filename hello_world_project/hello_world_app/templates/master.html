@@ -8,5 +8,10 @@
 {% block content %}
 {% endblock %}
 
+{% if request.path %}
+    <hr>
+    Volver a <a href="/">Inicio</a>
+{% endif %}
+
 </body>
 </html>
