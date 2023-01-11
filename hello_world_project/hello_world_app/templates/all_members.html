@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>All Members</h1>
+  
+
+  {% for member in my_members %}
+<div style="text-align: center; border-top: 1px solid black;">
+<h2>Miembro - #{{ member.id }}</h2>
+<ul>
+    <li>Nombre completo: {{ member.firstname }} {{ member.lastname }}</li>
+    <li>Teléfono: {{ member.phone }}</li>
+    <li>Fecha de alta: {{ member.joined_date }}</li>
+</ul>
+</div>
+  {% endfor %}
+
+
+</body>
+</html>
