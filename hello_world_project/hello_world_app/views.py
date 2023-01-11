@@ -36,7 +36,11 @@ def main(request):
 
 def testing(request):
   template = loader.get_template('testing.html')
+  members = Member.objects.all().values()
   context = {
-    'frutas': ['Apple', 'Banana', 'Cherry'],   
+    'frutas': ['Apple', 'Banana', 'Cherry'],
+    'members': members,
+    'heading_no_esc' : "<h1>Heading1</h1>",
+    'heading_esc' : "&lt;h1&gt;Heading1&lt;/h1&gt;",
   }
   return HttpResponse(template.render(context, request))

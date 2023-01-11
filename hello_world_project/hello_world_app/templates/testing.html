@@ -8,12 +8,44 @@ Testing
 <h1>Testing</h1>
 <p>Esto es una prueba</p>
 
+<hr>
+
+<h2>Dato creado desde testing.html</h2>
+{% with dato="mi dato" %}
+<p>Dato: {{ dato }}</p>
+{% endwith %}
+
+<hr>
+
+<h2>Datos de modelo Member</h2>
+{% for member in members %}
+  <p>{{ member.id }} - {{ member.firstname }}</p>
+{% endfor %}
+
+<hr>
+
 <h2>Frutas</h2>
 
 {% for fruta in frutas %}
   <p>{{ fruta }}</p>
 {% endfor %}
 
+<hr>
+
+<h2>Django Tags</h2>
+
+<h3 style="text-decoration: underline;">Autoescape</h3>
+
+<p><strong>autoescape on</strong></p>
+{% autoescape on %}
+  {{ heading_no_esc }} <br>
+  {{ heading_esc }}
+{% endautoescape %}
+<p><strong>autoescape off</strong></p>
+{% autoescape off %}
+  {{ heading_no_esc }} <br>
+  {{ heading_esc }}
+{% endautoescape %}
 
 
 {% endblock %}
