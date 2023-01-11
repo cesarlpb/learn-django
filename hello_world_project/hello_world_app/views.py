@@ -15,9 +15,14 @@ def all_members(request):
   return HttpResponse(template.render(context, request))
 
 def member(request, member_id):
-  my_member = Member.objects.get(pk=member_id)
-  template = loader.get_template('member.html')
-  context = {
-    'my_member': my_member,
-  }
-  return HttpResponse(template.render(context, request))
+    try:
+        my_member = Member.objects.get(pk=member_id)
+        template = loader.get_template('member.html')
+        context = {
+        'my_member': my_member,
+        }
+        return HttpResponse(template.render(context, request))
+    except Member.DoesNotExist as err:
+        return HttpResponse(f"Member with id {member_id} does not exist. Error: {err}")
+  
+  
