@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}
+Testing
+{% endblock %}
+
+{% block content %}
+<h1>Testing</h1>
+<p>Esto es una prueba</p>
+
+<h2>Frutas</h2>
+
+{% for fruta in frutas %}
+  <p>{{ fruta }}</p>
+{% endfor %}
+
+
+
+{% endblock %}
