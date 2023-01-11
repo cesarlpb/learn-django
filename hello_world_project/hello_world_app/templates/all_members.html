@@ -9,7 +9,7 @@
 <div style="text-align: center; border-top: 1px solid black;">
 <h2>Miembro - #{{ member.id }}</h2>
 <ul style="list-style-type: none;">
-    <li>Nombre completo: {{ member.firstname }} {{ member.lastname }}</li>
+    <li>Nombre completo: <a href="details/{{ member.id }}">{{ member.firstname }} {{ member.lastname }}</a></li>
     {% if member.phone %}<li>Teléfono: {{ member.phone }}</li>{% endif %}
     {% if member.joined_date %}<li>Fecha de alta: {{ member.joined_date }}</li>{% endif %}
 </ul>

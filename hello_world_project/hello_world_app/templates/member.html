@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<body style="text-align: center;">
+
+<h1>{{ my_member.firstname }} {{ my_member.lastname }}</h1>
+  
+{% if my_member.phone %}<p>Teléfono: {{ my_member.phone }}</p>{% endif %}
+{% if my_member.joined_date %}<p>Miembro desde: {{ my_member.joined_date }}</p>{% endif %}
+
+<p>Volver a <a href="/members">Miembros</a></p>
+
+</body>
+</html>
