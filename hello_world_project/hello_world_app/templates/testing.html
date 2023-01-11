@@ -47,5 +47,124 @@ Testing
   {{ heading_esc }}
 {% endautoescape %}
 
+<hr>
+<h3 style="text-decoration: underline;">Block</h3>
+<pre>
+  <code>
+    {&#37; block nombre_del_bloque &#37;}
+      Contenido
+    {&#37; endblock &#37;}
+  </code>
+</pre>
+
+<p><strong>Nota:</strong> el contenido de la plantilla secundaria con "extends..." reemplaza al contenido del bloque en <code>master.html</code>.</p>
+
+<hr>
+<h3 style="text-decoration: underline;">Comment</h3>
+<!-- <p>Comentario en HTML</p> -->
+{% comment "Explicación" %}
+  Comentario en Django
+{% endcomment %}
+
+<pre>
+  <code>
+    &lt;!-- Comentario en HTML --&gt;
+
+    {&#37; comment "Explicación" &#37;}
+    Comentario en Django
+    {&#37; endcomment &#37;}
+  </code>
+</pre>
+
+<hr>
+
+<h3 style="text-decoration: underline;">CSRF Token</h3>
+
+<p>Volvemos sobre esto en formularios.</p>
+
+<hr>
+
+<h3 style="text-decoration: underline;">CSRF Token</h3>
+
+<hr>
+
+<h3 style="text-decoration: underline;">Cycle</h3>
+
+<p>Itera sobre una lista de valores.</p>
+
+<ul>  
+  {% for fruta in frutas %}
+    <li>
+      {{ fruta }}: {% cycle 'dato_1' 'dato_2' 'dato_3' 'dato_4' %} 
+    </li>
+  {% endfor %}
+</ul>
+
+<pre>
+  <code>
+    {&#37; cycle "valor1" "valor2" "valor3" as nombre_de_variable &#37;}
+  </code>
+</pre>
+
+<hr>
+
+<h3 style="text-decoration: underline;">Debug</h3>
+<p>Requiere la librería <code>django-debug-toolbar</code> para mostrar el contexto de la plantilla.</p>
+<pre><code>
+  {&#37; load debug &#37;}
+  ...
+  {&#37; debug &#37;}
+</code></pre>
+
+<hr>
+<h3 style="text-decoration: underline;">Extends</h3>
+<p>Extiende una plantilla base.</p>
+
+<strong>plantilla_secundaria.html</strong>
+<pre><code>
+  {&#37; extends "master.html" &#37;}
+  {&#37; block title &#37;}
+    Testing
+  {&#37; endblock &#37;}
+  {&#37; block content &#37;}
+    Contenido de la plantilla secundaria
+  {&#37; endblock &#37;}
+</code></pre>
+
+<strong>master.html</strong>
+<pre><code>
+  {&#37; block content &#37;}
+    Contenido de la plantilla secundaria
+  {&#37; endblock &#37;}
+</code></pre>
+
+<h4>Default if None</h4>
+<p>Filtra los None por un valor por defecto.</p>
+<ul>
+{% for color in colors %}
+  <li>{{ color|default_if_none:"No hay color" }}</li>
+{% endfor %}
+</ul>
+<pre><code>
+  &lt;ul&gt;
+    {&#37; for color in colors &#37;}
+      &lt;li&gt;{{ color|default_if_none:"No hay color" }}&lt;/li&gt;
+    {&#37; endfor &#37;}
+    &lt;/ul&gt;
+</code></pre>
+
+<h4>Word Count</h4>
+{% with text='This is an example of a string.' %}
+  Original text: "{{ text }}"
+  Word count: {{ text|wordcount }}
+{% endwith %}
+
+<pre><code>
+  {&#37; with text='This is an example of a string.' &#37;}
+  Original text: "{{ text }}"
+  Word count: {{ text|wordcount }}
+  {&#37; endwith &#37;}
+</code></pre>
+
 
 {% endblock %}
