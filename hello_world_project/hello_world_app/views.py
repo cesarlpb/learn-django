@@ -38,6 +38,40 @@ def main(request):
 def testing(request):
   template = loader.get_template('testing.html')
   members = Member.objects.all().values()
+  cars = [
+    {
+        "brand": "Ford",
+        "model": "Mustang",
+        "doors": 3,
+        "year": "1990",
+    },
+    {
+        "brand": "Ford",
+        "model": "Sierra",
+        "doors": 5,
+        "year": "1980",
+    },
+    {
+        "brand": "Ford",
+        "model": "Bronco",
+        "doors": 5,
+        "year": "1960",
+    },
+    {
+        "brand": "Volvo",
+        "model": "XC90",
+        "doors": 5,
+        "year": "1960",
+    },
+    {
+        "brand": "Volvo",
+        "model": "P1800",
+        "doors": 2,
+        "year": "1990",
+    }]
+  # Ordenamos los coches para que regroup funcione correctamente
+  sorted_cars = sorted(cars, key=lambda x: x["year"])
+  # Si esta desordenado -> regroup no agrupa bien
   context = {
     'frutas': ['Apple', 'Banana', 'Cherry', 'Pineapple'],
     'members': members,
@@ -84,5 +118,37 @@ def testing(request):
     'date_1': datetime.datetime(2000, 1, 1),   
     'date_2': datetime.datetime(2023, 1, 1), 
     'date_3': datetime.datetime(2050, 1, 1),
+    'cars' : [
+    {
+        "brand": "Ford",
+        "model": "Mustang",
+        "doors": 3,
+        "year": "1950",
+    },
+    {
+        "brand": "Ford",
+        "model": "Sierra",
+        "doors": 5,
+        "year": "1960",
+    },
+    {
+        "brand": "Ford",
+        "model": "Bronco",
+        "doors": 5,
+        "year": "1960",
+    },
+    {
+        "brand": "Volvo",
+        "model": "XC90",
+        "doors": 5,
+        "year": "1960",
+    },
+    {
+        "brand": "Volvo",
+        "model": "P1800",
+        "doors": 2,
+        "year": "1990",
+    }],
+    'sorted_cars' : sorted_cars,
   }
   return HttpResponse(template.render(context, request))

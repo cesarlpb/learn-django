@@ -328,6 +328,73 @@ Formato de float como divisa:
 <h4>1 párrafo de HTML</h4>
 {% lorem 1 p %}
 
+<h3>Regroup</h3>
 
+{% regroup cars by brand as my_car_list %}
+
+{{ my_car_list }}
+
+<h4>Coches por Marca (brand):</h4>
+{% for car in my_car_list %}
+  <h5>{{ car.grouper }}</h5>
+  {% for car_obj in car.list %}
+    <p>
+      <strong>Modelo:</strong>  {{ car_obj.model }}. 
+      <strong>Año:</strong>     {{ car_obj.year }}. 
+      <strong>Puertas:</strong> {{ car_obj.doors }}
+    </p>
+  {% endfor %}
+{% endfor %}
+
+<h4>Coches por Modelo (model):</h4>
+{% regroup cars by model as my_car_list %}
+
+{{ my_car_list }}
+
+{% for car in my_car_list %}
+  <h2>{{ car.grouper }}</h2>
+  {% for car_obj in car.list %}
+    <p>
+      <strong>Modelo:</strong>  {{ car_obj.model }}. 
+      <strong>Año:</strong>     {{ car_obj.year }}. 
+      <strong>Puertas:</strong> {{ car_obj.doors }}
+    </p>
+  {% endfor %}
+{% endfor %}
+
+<h4>Coches por Año (year):</h4>
+{% regroup cars by year as my_car_list %}
+
+{{ my_car_list }}
+
+{% for car in my_car_list %}
+  <h2>{{ car.grouper }}</h2>
+  {% for car_obj in car.list %}
+    <p>
+      <strong>Modelo:</strong>  {{ car_obj.model }}. 
+      <strong>Marca:</strong>     {{ car_obj.brand }}. 
+      <strong>Puertas:</strong> {{ car_obj.doors }}
+    </p>
+  {% endfor %}
+{% endfor %}
+
+<h4>Sorted_cars</h4>
+{{ sorted_cars }}}
+
+<h4>Coches por Puertas (doors):</h4>
+{% regroup cars by doors as my_car_list %}
+
+{{ my_car_list }}
+
+{% for car in my_car_list %}
+  <h2>{{ car.grouper }}</h2>
+  {% for car_obj in car.list %}
+    <p>
+      <strong>Modelo:</strong>  {{ car_obj.model }}. 
+      <strong>Marca:</strong>     {{ car_obj.brand }}. 
+      <strong>Año:</strong> {{ car_obj.year }}
+    </p>
+  {% endfor %}
+{% endfor %}
 
 {% endblock %}
