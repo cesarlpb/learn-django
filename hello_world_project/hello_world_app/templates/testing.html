@@ -166,5 +166,110 @@ Testing
   {&#37; endwith &#37;}
 </code></pre>
 
+<h4>Date</h4>
+
+<h5>Footer</h5>
+{% now "Y" as current_year %}
+<p>Copyright {{ current_year }}</p>
+
+<h5>Formato de fecha por defecto</h5>
+{% now "Y-m-d" as current_date %}
+<p>Fecha actual: {{ current_date }}</p>
+
+{% now "Y-m-d H:i:s" as current_datetime %}
+<p>Fecha y hora actual: {{ current_datetime }}</p>
+
+<h5>Formato de fecha en español</h5>
+{% now "d-m-Y H:i:s" as current_datetime %}
+<p>Fecha y hora: {{ current_datetime }}</p>
+
+{% now "d" as current_day %}
+
+{% now "m" as current_month %}
+{% with current_month_idx=current_month|add:-1 %}
+
+{% now "Y" as current_year %}
+
+{% now "H" as current_hour %}
+{% now "i" as current_minute %}
+{% now "s" as current_second %}
+
+{% now "d-m-Y H:i:s" as current_datetime %}
+
+<!-- current_month_idx es 0 pero no accede al dato meses.current_month_idx -->
+<p>Hoy, {{ current_day }} de {{ meses.0 }} de {{ current_year }} ... </p>
+{% endwith %}
+
+<h4>Floatformat</h4>
+Formato de float como divisa:
+<p>{{ 7.122489|floatformat:2 }}€</p>
+<p>{{ 7.1|floatformat:2 }}€</p>
+<p>{{ 7|floatformat:2 }}€</p>
+
+<h4>Linebreaks</h4>
+
+<h5>Texto con salto de líneas</h5>
+<p>{{ texto|linebreaks }}</p>
+
+<h5>Texto con saltos con &lt;br&gt;</h5>
+<p>{{ texto|linebreaksbr }}</p>
+
+<h5>Texto con número de línea</h5>
+<p>{{ texto|linenumbers }}</p>
+
+<h4>Justificado izquierda con ljust</h4>
+<p style="text-align:justify;">{{ texto|ljust:50 }}</p>
+
+<h4>phone2numeric</h4>
+<p>Teléfono {{ phone }}: {{ phone|phone2numeric }}</p>
+
+<h4>Pluralize</h4>
+<div>
+  {% for elemento in lista %}
+  <p>Te quedan {{ elemento }} manzana{{ elemento|pluralize }} en la cesta.</p>
+  {% endfor %}
+</div>
+
+<h4>Random</h4>
+<p>Elemento aleatorio de lista: {{ lista|random }}</p>
+
+<h4>Slice</h4>
+<p>Slice: {{ texto_2|slice:"0:11" }}</p>
+
+<h4>Slugify</h4>
+<p>Slug: /{{ texto_2|slugify|slice:"0:11" }}</p>
+
+<h4>Stringformat</h4>
+<p>Total price: {{ total_price|floatformat:2|default:0}} €</p>
+<p>Total price: {{ total_price_2|floatformat:2|default:0}} €</p>
+<p>Total price: {{ total_price_2|floatformat:2|default:0|default_if_none:0}} €</p>
+
+<h4>Quitar etiquetas HTML</h4>
+<p>{{ heading_no_esc|striptags }}</p>
+<p>{{ html|striptags }}</p>
+
+<h4>Time</h4>
+{% now "d-m-Y H:i" as current_datetime %}
+<p>Fecha y hora: {{ current_datetime }}</p>
+
+{% now "H:i" as current_time %}
+<p>Hora: {{ current_time }} h</p>
+
+{% comment "No salen los valores de time. La variable tiene datos asi que es algo con el filter time." %}
+<p>{{ current_datetime|time:"H:i" }}</p>
+<p>Time now: {{ current_datetime|time:"H:i" }}</p>
+<p>Time now (AM/PM format): {{ current_datetime|time:"g:i a" }}</p>
+<p>Time now (12-hour format): {{ current_datetime|time:"h:i" }}</p>
+<p>Time now (24-hour format): {{ current_datetime|time:"H:i" }}</p>
+{% endcomment %}
+
+<h4>Timesince</h4>
+<p>Tiempo transcurrido entre {{ date_1|date:"d-m-Y" }} y {{ date_2|date:"d-m-Y" }}: {{ date_1|timesince:date_2 }}</p>
+
+<h4>Timeuntil</h4>
+<p>Tiempo restante entre {{ date_1|date:"d-m-Y" }} y {{ date_3|date:"d-m-Y" }}: {{ date_3|timeuntil:date_1 }}</p>
+
+<h4>Truncatewords</h4>
+<p>Palabras recortadas a 10: {{ texto_3|truncatewords:10 }}</p>
 
 {% endblock %}
