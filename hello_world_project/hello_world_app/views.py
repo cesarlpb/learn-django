@@ -150,5 +150,8 @@ def testing(request):
         "year": "1990",
     }],
     'sorted_cars' : sorted_cars,
+    'code': """{% for x in fruits %}
+    {{ x }}
+    {% endfor %}"""
   }
   return HttpResponse(template.render(context, request))

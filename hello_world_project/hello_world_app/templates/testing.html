@@ -397,4 +397,66 @@ Formato de float como divisa:
   {% endfor %}
 {% endfor %}
 
+<hr>
+
+<h3>Resetcycle</h3>
+<ul style="width: 100px; margin: 0 auto;">
+{% for numero in lista %}
+    <li>
+      {{ numero }} - {% cycle "fizz" "buzz" "fizzbuzz" %}
+    </li>
+    {% if numero == 4 %}
+      {% resetcycle %}
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<hr>
+
+<h3>Spaceless</h3>
+<p><strong>con spaceless</strong></p>
+{% spaceless %}
+  <ul style="width: 100px; margin: 0 auto;">
+    {% for numero in lista %}
+      <li>      
+        <span>       {{ numero }}          </span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endspaceless %}
+<br>
+<br>
+<p><strong>sin spaceless</strong></p>
+<ul style="width: 100px; margin: 0 auto;">
+  {% for numero in lista %}
+    <li>      
+      <span>       {{ numero }}          </span>
+    </li>
+  {% endfor %}
+</ul>
+
+<h3>Templatetag</h3>
+<p>
+  {% templatetag openblock %}
+    extends
+  {% templatetag closeblock %}
+</p>
+
+<h3>Verbatim</h3>
+
+<p><strong>con verbatim</strong></p>
+{% verbatim nombre_del_bloque %}
+  {% for x in fruits %}
+  <br>
+    {{ x }}
+  <br>
+  {% endfor %}
+{% endverbatim nombre_del_bloque %}
+<p><strong>con &lt;pre&gt; y &lt;code&gt;</strong></p>
+<pre>
+  <code>
+    {{ code }}
+  </code>
+</pre>
+
 {% endblock %}

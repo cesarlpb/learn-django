@@ -27,9 +27,12 @@
     Volver a <a href="/">Inicio</a>
 {% endif %}
 
+{% if request.path != "/testing/" %}
 <h2>Testing</h2>
 <div>
 Ir a <a href="/testing">Testing</a>
+{% endif %}
+
 </div>
 
 </body>
