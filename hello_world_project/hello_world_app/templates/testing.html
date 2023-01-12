@@ -138,6 +138,10 @@ Testing
   {&#37; endblock &#37;}
 </code></pre>
 
+<hr>
+
+<h3>Filter</h3>
+
 <h4>Default if None</h4>
 <p>Filtra los None por un valor por defecto.</p>
 <ul>
@@ -271,5 +275,37 @@ Formato de float como divisa:
 
 <h4>Truncatewords</h4>
 <p>Palabras recortadas a 10: {{ texto_3|truncatewords:10 }}</p>
+
+<h4>Pasando listas a &lt;li&gt;</h4>
+<div style="width: 50px; margin: 0 auto;">
+  <ul>
+    {{ lista|unordered_list }}
+  </ul>
+</div>
+
+<h4>Wordcount</h4>
+<p>Número de caracteres: {{ texto|length }}</p>
+<p>Número de palabras: {{ texto|wordcount }}</p>
+
+<hr>
+
+<h3>Ifchanged</h3>
+<div style="width: 50px; margin: 0 auto;">
+<ul>
+  {% for elemento in lista_2 %}
+    {% ifchanged %}
+      <li>{{ elemento }}</li>
+    {% endifchanged %}
+  {% endfor %}
+</ul>
+</div>
+
+<h3>Include</h3>
+<p>Menú navbar de <code>navbar.html</code>:</p>
+{% include "navbar.html" %}
+<p>Include sin pasar las variables:</p>
+{% include "navbar2.html" %}
+<p>Include pasando las variables:</p>
+{% include "navbar2.html" with var_1="Variable 1" var_2="Variable 2" %}
 
 {% endblock %}

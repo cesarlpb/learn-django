@@ -61,6 +61,7 @@ def testing(request):
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.""",
     "phone" : "123-Django",
     "lista" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "lista_2" : [1, 2, 3, 5, 5, 5, 5, 8, 9, 10],
     "texto_2" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
     "texto_3" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
     "total_price" : 100,
