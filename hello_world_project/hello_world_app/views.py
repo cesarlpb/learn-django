@@ -53,6 +53,20 @@ def testing(request):
               """,
     'colors': ['Red', None, 'Blue', '', 'Yellow'],
     'meses' : [ "Enero" , "Febrero" , "Marzo" , "Abril" , "Mayo" , "Junio" , "Julio" , "Agosto" , "Septiembre" , "Octubre" , "Noviembre" , "Diciembre"],
+    'meses_2' : {
+                "January" : "Enero"
+                , "February" : "Febrero"
+                , "March" : "Marzo"
+                , "April" : "Abril"
+                , "May" : "Mayo"
+                , "June" : "Junio"
+                , "July" : "Julio"
+                , "August" : "Agosto"
+                , "September" : "Septiembre"
+                , "October" : "Octubre"
+                , "November" : "Noviembre"
+                , "December" : "Diciembre"
+                },
     'texto': """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Esto es un texto con múltiples líneas.
 
