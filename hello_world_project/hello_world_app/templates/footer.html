@@ -1,0 +1,19 @@
+{% block footer %}
+
+<footer>
+    <div>
+        {% if request.path %}
+        Volver a <a href="/">Inicio</a>
+        {% endif %}
+
+        {% if request.path != "/testing/" %}
+        <p>Ir a <a href="/testing">Testing</a></p>
+        {% endif %}
+        
+    <ul style="list-style-type: none;">
+        <li><a href="#" target="_blank">Enlace externo</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+    </ul>
+</footer>
+{% endblock %}
