@@ -138,3 +138,50 @@ member.save()
 ```python
 Member.objects.all().values()
 ```
+
+## Static
+
+1. Creamos carpeta `static` en la carpeta de la **app** -> `hello_world_app/static` o `members`
+2. Creamos una hoja de estilos, por ejemplo `main.css` o `style.css`
+3. Actualizamos `settings.py`:
+```python
+STATIC_ROOT = BASE_DIR / 'productionfiles'
+STATIC_URL = '/static/'
+```
+Ejecutamos este comando para generar los `statics`(archivos) de producción:
+```
+py manage.py collectstatic
+```
+
+Se deben generar unos 131 archivos en la carpeta `productionfiles`.
+
+4. Instalamos Whitenoise para servir los statics:
+```
+pip install whitenoise
+```
+5. Actualizamos `settings.py`:
+```python
+MIDDLEWARES = [
+    ...
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+] 
+```
+Colocamos DEBUG en `False`:
+```python
+DEBUG = False
+```
+6. Añadimos la hoja de estilos en `master.html`:
+```
+{% load static %}
+...
+<head>
+
+...
+<link rel="stylesheet" href="{% static 'main.css' %}">
+...
+</head>
+```
+7. Ejecutamos el servidor de desarrollo:
+```
+python manage.py runserver
+```
