@@ -1,22 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
 </head>
-<style>
-  h3 {
-    text-transform: uppercase;
-    font-size: 1.75rem;
-  }
-  h4 {
-    font-size: 1.5rem;
-    text-decoration: underline;
-  }
-  h5 {
-    font-size: 1.25rem;
-    text-decoration: underline;
-  }
-</style>
+<link rel="stylesheet" href="{% static 'main.css' %}">
 <body style="text-align: center;">
 
 {% block content %}
