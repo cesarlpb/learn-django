@@ -35,6 +35,10 @@ def main(request):
     template = loader.get_template('main.html')
     return HttpResponse(template.render())
 
+def pagina(request):
+    template = loader.get_template("pagina.html")
+    return HttpResponse(template.render())
+
 def testing(request):
   template = loader.get_template('testing.html')
   members = Member.objects.all().values()
