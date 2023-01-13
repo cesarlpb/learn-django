@@ -39,6 +39,11 @@ text-decoration: underline;
     position: fixed;
 }
 
+#sidebar-nav span {
+    display: inline-block;
+    width: 80%;
+    text-align: left;
+}
 /* Footer */
 footer{
     display: flex;
