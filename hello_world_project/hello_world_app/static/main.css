@@ -8,11 +8,12 @@ body {
 } 
 
 .container {
+    width: calc(100vw - 280px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 0 auto auto;
+    margin: 0 0 auto 280px;
     min-height: 70vh;
 }
 
@@ -29,6 +30,13 @@ text-decoration: underline;
 h5 {
 font-size: 1.25rem;
 text-decoration: underline;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
 }
 
 /* Footer */
