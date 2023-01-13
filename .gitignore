@@ -131,3 +131,5 @@ dmypy.json
 # templatetags/
 
 productionfiles/
+
+.DS_Store
