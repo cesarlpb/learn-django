@@ -185,3 +185,37 @@ DEBUG = False
 ```
 python manage.py runserver
 ```
+
+## Deploy en PythonAnywhere
+
+1. Crear cuenta en [PythonAnywhere](https://www.pythonanywhere.com/)
+2. Crear un nuevo Bash Console -> `Bash Console`
+- Subir los archivos del proyecto a PythonAnywhere
+```
+git clone <URL_repositorio>
+```
+3. Creamos entorno virtual:
+```
+python -m venv <nombre_del_entorno>
+```
+- Activamos el entorno virtual:
+```
+source <nombre_del_entorno>/bin/activate
+```
+4. Instalamos Django y los `requirements`.
+- Navegamos hasta `requirements.txt` y ejecutamos:
+```
+pip install -r requirements.txt
+```
+5. Ejecutar las migraciones de Django:
+```
+python manage.py migrate
+```
+--> Tiene que salir todo **OK**
+
+- Generamos los estáticos para producción:
+```
+python manage.py collectstatic
+```
+--> Tiene que salir más de 131 archivos, en mi caso 137.
+<!-- 6. Creamos un nuevo `Web` -> `Add a new web app` -->
