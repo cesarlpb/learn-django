@@ -1,16 +1,18 @@
 {% block footer %}
 
-<footer>
-    <div>
+<footer class="mb-0">
+    <div class="col-4">
+        <ul style="list-style-type: none;padding-left: 0;">
         {% if request.path %}
-        Volver a <a href="/">Inicio</a>
+        <li>Volver a <a href="/">Inicio</a></li>
         {% endif %}
 
         {% if request.path != "/testing/" %}
-        <p>Ir a <a href="/testing">Testing</a></p>
+        <li>Ir a <a href="/testing">Testing</a></li>
         {% endif %}
-        
-    <ul style="list-style-type: none;">
+        </ul>
+
+    <ul style="list-style-type: none;padding-left: 0;">
         <li><a href="#" target="_blank">Enlace externo</a></li>
         <li><a href="#">Link 2</a></li>
         <li><a href="#">Link 3</a></li>

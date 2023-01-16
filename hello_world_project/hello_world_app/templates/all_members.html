@@ -6,6 +6,16 @@ Todos los miembros
 
 {% block content %}
 
+<div class="mycard">
+  <h1>Members</h1>
+  <ul>
+    {% for member in my_members %}
+      <li onclick="window.location = 'details/{{ member.id }}'">{{ member.firstname }} {{ member.lastname }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% comment %}
 <h1 style="text-align: center;">Miembros</h1>
 
   {% for member in my_members %}
@@ -17,6 +27,6 @@ Todos los miembros
     {% if member.joined_date %}<li>Fecha de alta: {{ member.joined_date }}</li>{% endif %}
 </ul>
 </div>
-  {% endfor %}
+{% endcomment %}
 
 {% endblock %}

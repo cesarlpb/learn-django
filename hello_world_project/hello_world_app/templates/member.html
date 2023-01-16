@@ -1,15 +1,24 @@
 {% extends "master.html" %}
 
 {% block title %}
-{% if my_member.id %} {{ my_member.firstname }} {{ my_member.lastname }} {% endif %}
+{% if my_member.id %} Detalles de: {{ my_member.firstname }} {{ my_member.lastname }} {% endif %}
 {% endblock %}
 
 {% block content %}
 
+<div class="mycard">
+    <h1>{{ my_member.firstname }} {{ my_member.lastname }}</h1>
+    <p>Phone {{ my_member.phone }}</p>
+    <p>Member since: {{ my_member.joined_date }}</p>
+</div>
+
+{% comment %}
 <h1>{{ my_member.firstname }} {{ my_member.lastname }}</h1>
   
 {% if my_member.phone %}<p>Teléfono: {{ my_member.phone }}</p>{% endif %}
 {% if my_member.joined_date %}<p>Miembro desde: {{ my_member.joined_date }}</p>{% endif %}
+
+{% endcomment %}
 
 <p>Volver a <a href="/members">Miembros</a></p>
 
