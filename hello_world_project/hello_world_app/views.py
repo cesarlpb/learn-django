@@ -30,7 +30,15 @@ def member(request, member_id):
         return HttpResponse(template.render(context, request))
     except Member.DoesNotExist as err:
         return HttpResponse(f"Member with id {member_id} does not exist. Error: {err}")
-  
+
+def details(request, slug):
+  my_member = Member.objects.get(slug=slug)
+  template = loader.get_template('member.html')
+  context = {
+    'my_member': my_member,
+  }
+  return HttpResponse(template.render(context, request))  
+
 def main(request):
     template = loader.get_template('main.html')
     return HttpResponse(template.render())
