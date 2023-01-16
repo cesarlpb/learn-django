@@ -218,4 +218,20 @@ python manage.py migrate
 python manage.py collectstatic
 ```
 --> Tiene que salir más de 131 archivos, en mi caso 137.
-<!-- 6. Creamos un nuevo `Web` -> `Add a new web app` -->
+
+Ahora si haces `python manage.py runserver` y **NO** sale error o warning (aunque la salida la bloquea el servidor), sabemos que todo está bien.
+
+### Crear superuser
+
+[Pasos para crear y ver superusuario](https://stackoverflow.com/questions/45275897/how-to-get-superuser-details-in-django)
+
+```
+from django.contrib.auth.models import User
+
+superusers = User.objects.filter(is_superuser=True)
+```
+
+Cambiar contraseña:
+```
+python manage.py changepassword <nombre_de_usuario>
+```
