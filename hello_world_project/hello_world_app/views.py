@@ -3,10 +3,17 @@ from django.http import HttpResponse
 from .models import Member
 import datetime
 
+# borrar
 def hello_world(request):
     template = loader.get_template('hello_world.html')
     return HttpResponse(template.render())
 
+# CRUD -> Member
+# Create
+def create_member(request):
+  pass
+# Read
+# vista de todos los members -> read all / get all
 def all_members(request):
   my_members = Member.objects.all().values()
   template = loader.get_template('all_members.html')
@@ -15,7 +22,7 @@ def all_members(request):
   }
   return HttpResponse(template.render(context, request))
 
-# vista de un member con id
+# vista de un member con id -> read one / get one / get by id
 def member(request, member_id):
     if not isinstance(member_id, int):
         return HttpResponse(f"Member id {member_id} no es válido. El id debe ser un entero positivo.")
@@ -32,7 +39,8 @@ def member(request, member_id):
     except Member.DoesNotExist as err:
         return HttpResponse(f"Member with id {member_id} does not exist. Error: {err}")
 
-# vista de un member con slug
+# vista de un member con slug -> read one / get one / get by slug
+  # issue: cuando el firstname y lastname coinciden nos arroja error -> slug + id o slug + hash
 def details(request, slug):
   my_member = Member.objects.get(slug=slug)
   template = loader.get_template('member.html')
@@ -41,14 +49,25 @@ def details(request, slug):
   }
   return HttpResponse(template.render(context, request))  
 
+# Update
+def update_member(request):
+  pass
+
+# Delete
+def delete_member(request):
+  pass
+
+# main.html -> home
 def main(request):
     template = loader.get_template('main.html')
     return HttpResponse(template.render())
 
+# borrar
 def pagina(request):
     template = loader.get_template("pagina.html")
     return HttpResponse(template.render())
 
+# borrar
 def testing(request):
   template = loader.get_template('testing.html')
   members = Member.objects.all().values()
