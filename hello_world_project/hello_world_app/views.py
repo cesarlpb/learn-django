@@ -15,6 +15,7 @@ def all_members(request):
   }
   return HttpResponse(template.render(context, request))
 
+# vista de un member con id
 def member(request, member_id):
     if not isinstance(member_id, int):
         return HttpResponse(f"Member id {member_id} no es válido. El id debe ser un entero positivo.")
@@ -31,6 +32,7 @@ def member(request, member_id):
     except Member.DoesNotExist as err:
         return HttpResponse(f"Member with id {member_id} does not exist. Error: {err}")
 
+# vista de un member con slug
 def details(request, slug):
   my_member = Member.objects.get(slug=slug)
   template = loader.get_template('member.html')
