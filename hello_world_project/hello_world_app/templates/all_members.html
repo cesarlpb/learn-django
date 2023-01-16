@@ -10,7 +10,14 @@ Todos los miembros
   <h1>Members</h1>
   <ul>
     {% for member in my_members %}
+    
+    {% comment "Este botón nos lleva a details/1" %}   
       <li onclick="window.location = 'details/{{ member.id }}'">{{ member.firstname }} {{ member.lastname }}</li>
+    {% endcomment %}
+    
+    {# "Este botón lleva a /details/nombre-apellido" #}
+    <li onclick="window.location = 'details/{{ member.slug }}'">{{ member.firstname }} {{ member.lastname }}</li>
+
     {% endfor %}
   </ul>
 </div>
