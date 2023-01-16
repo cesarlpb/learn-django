@@ -1,0 +1,25 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <div class="col-6 mx-auto">
+        {% if msg %}
+            <div class="alert alert-success" role="alert">
+                {{ msg }}
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        
+        {% if form %}
+        <h1 class="mt-3 mb-5">Crear Member</h1>
+        <form action="{% url 'create_member' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary px-2 mt-3" value="Crear Member">
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

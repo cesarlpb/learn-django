@@ -1,6 +1,13 @@
 from django.template import loader
 from django.http import HttpResponse
+from django.shortcuts import render
+
+# Importamos modelo Member y la función generate_slug_hash
 from .models import Member
+from .models import generate_slug_hash
+# Importamos el formulario MemberForm -> crear Member
+from .forms import MemberForm
+
 import datetime
 
 # borrar
@@ -11,7 +18,25 @@ def hello_world(request):
 # CRUD -> Member
 # Create
 def create_member(request):
-  pass
+  if request.method == 'POST':
+        form = MemberForm(request.POST)
+        if form.is_valid():
+          
+          # Tomamos valores del form en "member" para añadir slug_hash y slug
+          member = form.save(commit=False)
+          member.slug_hash = generate_slug_hash()
+          member.slug = f"{member.firstname}-{member.lastname}-{member.slug_hash}"
+
+          form.save()
+          msg = f'Se ha creado el Member {member.firstname} {member.lastname}'
+          return render(request, 'create_member.html', {'msg': msg})
+        else: 
+          error = "El formulario no es válido."
+          return render(request, 'create_member.html', {'error': error})
+  elif request.method == 'GET':
+      form = MemberForm()
+      return render(request, 'create_member.html', {'form': form})
+
 # Read
 # vista de todos los members -> read all / get all
 def all_members(request):
