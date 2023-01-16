@@ -37,6 +37,7 @@ text-decoration: underline;
     width: 280px;
     height: 100vh;
     position: fixed;
+    z-index: -1;
 }
 
 #sidebar-nav span {
@@ -53,11 +54,11 @@ footer{
     background-color: lightgray;
     padding: 0;
     text-align: center;
-    position: relative;
     width: 100%;
     bottom: 0;
     margin: auto 0 0;
     /*height: 30vh;*/
+    z-index: 9999;
 }
 footer li {
     margin: 10px;
