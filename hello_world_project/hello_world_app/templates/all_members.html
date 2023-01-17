@@ -15,9 +15,10 @@ Todos los miembros
       <li onclick="window.location = 'details/{{ member.id }}'">{{ member.firstname }} {{ member.lastname }}</li>
     {% endcomment %}
     
-    {# "Este botón lleva a /details/nombre-apellido" #}
+    {# "Este botón lleva a /details/slug" #}
     <li onclick="window.location = 'details/{{ member.slug }}'">{{ member.firstname }} {{ member.lastname }}</li>
-
+    {# "Este botón lleva a /delete/slug" #}
+    <li onclick="window.location = 'delete/{{ member.slug }}'"> Borrar</li>
     {% endfor %}
   </ul>
 </div>

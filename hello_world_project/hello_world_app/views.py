@@ -110,8 +110,16 @@ def update_member(request, slug):
     return render(request, 'update_member.html', {'form': form, 'current_member_values': current_member_values, 'slug': slug})
 
 # Delete
-def delete_member(request):
-  pass
+def delete_member(request, slug):
+  #member = Member.objects.get(slug=slug) 
+  member = Member.objects.filter(slug=slug).first()
+  # if request.method == 'POST':
+  if member:
+    if member.slug == slug:
+      # try / except
+      member.delete()
+      msg = f'Se ha eliminado el Member {member.slug}'
+      return render(request, 'delete_member.html', {'msg': msg})
 
 # main.html -> home
 def main(request):
