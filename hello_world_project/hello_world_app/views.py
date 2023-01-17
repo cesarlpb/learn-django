@@ -111,7 +111,7 @@ def update_member(request, slug):
 
 # Delete
 def delete_member(request, slug):
-  #member = Member.objects.get(slug=slug) 
+  #member = Member.objects.get(slug=slug) # si el slug no existe nos arroja error
   member = Member.objects.filter(slug=slug).first()
   # if request.method == 'POST':
   if member:
@@ -120,6 +120,9 @@ def delete_member(request, slug):
       member.delete()
       msg = f'Se ha eliminado el Member {member.slug}'
       return render(request, 'delete_member.html', {'msg': msg})
+  else:
+    error = f"El member {slug} no existe."
+    return render(request, 'delete_member.html', {'error': error})
 
 # main.html -> home
 def main(request):

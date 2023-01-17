@@ -1,5 +1,9 @@
 {% extends "master.html" %}
 
 {% block content %}
-<p>{{ msg }}</p>
+{% if msg %}
+    <p>{{ msg }}</p>
+{% else %}
+    <p>{{ error }}</p>
+{% endif %}
 {% endblock %}
