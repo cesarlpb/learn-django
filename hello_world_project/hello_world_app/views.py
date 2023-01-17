@@ -5,8 +5,9 @@ from django.shortcuts import render
 # Importamos modelo Member y la función generate_slug_hash
 from .models import Member
 from .models import generate_slug_hash
-# Importamos el formulario MemberForm -> crear Member
-from .forms import MemberForm
+# Importamos el formulario CreateMemberForm -> crear Member
+from .forms import CreateMemberForm
+from .forms import UpdateMemberForm
 
 import datetime
 
@@ -19,13 +20,16 @@ def hello_world(request):
 # Create
 def create_member(request):
   if request.method == 'POST':
-        form = MemberForm(request.POST)
+        form = CreateMemberForm(request.POST)
         if form.is_valid():
           
           # Tomamos valores del form en "member" para añadir slug_hash y slug
           member = form.save(commit=False)
           member.slug_hash = generate_slug_hash()
-          member.slug = f"{member.firstname}-{member.lastname}-{member.slug_hash}"
+          # Agregamos condición para que firstname y lastname no tengan espacios
+          cleaned_firstname = member.firstname.replace(" ", "").lower()
+          cleaned_lastname = member.lastname.replace(" ", "").lower()
+          member.slug = f"{cleaned_firstname}-{cleaned_lastname}-{member.slug_hash}"
 
           form.save()
           msg = f'Se ha creado el Member {member.firstname} {member.lastname}'
@@ -34,7 +38,7 @@ def create_member(request):
           error = "El formulario no es válido."
           return render(request, 'create_member.html', {'error': error})
   elif request.method == 'GET':
-      form = MemberForm()
+      form = CreateMemberForm()
       return render(request, 'create_member.html', {'form': form})
 
 # Read
@@ -75,8 +79,35 @@ def details(request, slug):
   return HttpResponse(template.render(context, request))  
 
 # Update
-def update_member(request):
-  pass
+def update_member(request, slug):
+  #member = Member.objects.get(slug=slug)
+  #if member.slug == slug:
+  if request.method == 'POST':
+    member = Member.objects.get(slug=slug)
+    form = UpdateMemberForm(request.POST, instance=member)
+    if form.is_valid():
+      # Actualiza los valores del member que no están vacíos del form
+      for field in form.cleaned_data:
+        setattr(member, field, form.cleaned_data[field])
+      # Guardamos los cambios en el objeto que ya existe
+      member.save()
+      msg = f'Se ha actualizado el Member {member.firstname} {member.lastname}'
+      return render(request, 'update_member.html', {'msg': msg})
+    else: 
+      error = "El formulario no es válido."
+      return render(request, 'update_member.html', {'error': error})
+    #else: 
+    #  error = f"El member {slug} no existe."
+    #  return render(request, 'update_member.html', {'error': error})
+  elif request.method == 'GET':
+    current_member = Member.objects.get(slug=slug)
+    current_member_values = {
+      "firstname" : current_member.firstname, 
+      "lastname" : current_member.lastname,
+      "phone" : current_member.phone,
+    }
+    form = UpdateMemberForm()
+    return render(request, 'update_member.html', {'form': form, 'current_member_values': current_member_values, 'slug': slug})
 
 # Delete
 def delete_member(request):
