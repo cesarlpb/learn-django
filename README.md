@@ -20,6 +20,6 @@ django-admin startproject <nombre_de_tu_app> .
 
 ## Tutorial de Django
 
-Empezamos el tutorial de [https://docs.djangoproject.com/en/4.1/intro/tutorial01/](documentación de Django).
+Empezamos el tutorial de [documentación de Django](https://docs.djangoproject.com/en/4.1/intro/tutorial01/).
 
 1. Primeros pasos
