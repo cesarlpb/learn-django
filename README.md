@@ -235,3 +235,14 @@ Cambiar contraseña:
 ```
 python manage.py changepassword <nombre_de_usuario>
 ```
+
+<!--
+Ejercicio
+1. Añadir navbar -> Crear Member
+2. Iconos en lista de members -> /members para 
+    editar -> navega a /update/slug
+    borrar -> navega a /delete/slug -> botón para confirmar que borramos
+3. Hay que colocar que no todos los campos sean obligatorios -> update
+- Repasar
+- https://docs.djangoproject.com/en/4.1/ -> tutorial de 7 partes
+-->
