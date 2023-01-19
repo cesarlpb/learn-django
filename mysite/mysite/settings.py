@@ -13,14 +13,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+BASE_DIR = Path(__file__).resolve().parent.parent # "primer" mysite
+#MY_SITE = Path(__file__).resolve().parent # proyecto -> "segundo" mysite
+PROYECT_DIR = "mysite" # "segundo" mysite
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h%x1#i=oeeoyz2*(kgvtc5%=l!*iql6+v@*!$hhnufi6adr83u'
+    # con MY_SITE -> MY_SITE / f'top_secret.txt'
+with open(BASE_DIR / f'{PROYECT_DIR}/top_secret.txt') as f:
+    SECRET_KEY = f.read().strip()
+#SECRET_KEY = 'django-insecure-h%x1#i=oeeoyz2*(kgvtc5%=l!*iql6+v@*!$hhnufi6adr83u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
