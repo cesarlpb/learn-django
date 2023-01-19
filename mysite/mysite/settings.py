@@ -23,6 +23,8 @@ PROYECT_DIR = "mysite" # "segundo" mysite
     # con MY_SITE -> MY_SITE / f'top_secret.txt'
 with open(BASE_DIR / f'{PROYECT_DIR}/top_secret.txt') as f:
     SECRET_KEY = f.read().strip()
+
+# Si no carga bien el txt para el secret key podeis descomentar esto:
 #SECRET_KEY = 'django-insecure-h%x1#i=oeeoyz2*(kgvtc5%=l!*iql6+v@*!$hhnufi6adr83u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
