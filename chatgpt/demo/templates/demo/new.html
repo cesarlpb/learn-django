@@ -1,0 +1,12 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+    {% if form %}
+        <h2 class="mt-3 mb-5">New Query</h2>
+        <form action="{% url 'new_query' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary px-2 mt-3" value="Ask ChatGPT">
+        </form>
+    {% endif %}
+{% endblock %}

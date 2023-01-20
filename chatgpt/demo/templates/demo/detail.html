@@ -1,0 +1,19 @@
+{% extends 'demo/base.html' %}
+
+{% load filters %}
+
+{% block content %}
+<div class="container col-4 mx-auto">
+    {% if query %}
+    <h2>{{ query.id }} - {{ query.prompt }}</h2>
+        <table class="mx-auto">
+            {% for field in query %}
+                <tr>
+                    <td class="col-6"><strong>{{ field }}:</strong></td> 
+                    <td class="col-6 text-end">{{ query|lookup:field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

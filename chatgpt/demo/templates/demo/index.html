@@ -1,0 +1,14 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+    <h1>Ask ChatGPT</h1>
+    {% if all_queries %}
+    <ul>
+    {% for query in all_queries %}
+        <li>{{ query.id }}. - <a href="{% url 'demo:detail' query.id %}">{{ query.prompt }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>No hay queries disponibles.</p>
+    {% endif %}
+{% endblock %}

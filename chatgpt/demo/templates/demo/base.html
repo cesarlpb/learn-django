@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ask ChatGPT</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <!-- Bootrstap Hoja de Estilos -->
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="{% static 'bootstrap-icons.css' %}">
+    <!-- Hoja principal de estilos -->
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>
