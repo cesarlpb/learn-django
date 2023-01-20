@@ -57,5 +57,7 @@ Rama para hacer CRUD con Class Based Views
 ```
 
 8. Quitamos algunos cambios previos de archivos de `mysite/templates` para que no salga lo de Polls (opcional)
+
 9. Logeamos en `/admin` y debemos ver que no hay nada de `class_views` aun.
+
 10. :)
