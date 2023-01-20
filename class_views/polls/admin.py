@@ -25,5 +25,5 @@ class UserAdmin(admin.ModelAdmin):
         ('Datos de Contacto', {'fields': ['email', 'address', 'phone']}),
     ]
 
-admin.site.register(Question, QuestionAdmin)
-admin.site.register(User, UserAdmin)
+#admin.site.register(Question, QuestionAdmin)
+#admin.site.register(User, UserAdmin)

@@ -130,4 +130,5 @@ dmypy.json
 
 .DS_Store
 
+# NO hacemos seguimiento de la llave privada de Django
 top_secret.txt

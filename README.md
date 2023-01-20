@@ -1,99 +1,61 @@
 # learn-django
 Repositorio para aprender Django
 
-# Instalación de Django
+Rama para hacer CRUD con Class Based Views
 
-Para instalar Django ver [este tutorial](https://docs.djangoproject.com/es/4.1/topics/install/).
+## Creación de class_views
 
-## Tutorial de Django
+1. Creamos rama **sin historial**, como queremos basarla en rama `django_tutorial`, primero navegamos a dicha rama y hacemos `git pull` para confirmar que tenemos los cambios al díoa. Y luego creamos la rama `class_views`:
 
-Empezamos el tutorial de la documentación de Django, [Parte 1](https://docs.djangoproject.com/en/4.1/intro/tutorial01/).
-
-1. Primeros pasos. Creamos proyecto.
-Archivos de mysite:
 ```
-mysite/
-    manage.py
-    mysite/
-        __init__.py
-        settings.py
-        urls.py
-        asgi.py
-        wsgi.py
+    git checkout django_tutorial
+    git pull
 ```
-Cambio del puerto para dev:
 ```
-python manage.py runserver 8080
-```
-Creamos app `polls`:
-```
-python manage.py startapp polls
+    git checkout --orphan class_views
 ```
 
-Archivos de polls:
+2. Activamos `venv` e intentamos levantar el servidor de desarrollo:
+
 ```
-polls/
-    __init__.py
-    admin.py
-    apps.py
-    migrations/
-        __init__.py
-    models.py
-    tests.py
-    views.py
+    python manage.py runserver
 ```
 
-2. Configurando la base de datos
-Continuamos con la [Parte 2](https://docs.djangoproject.com/en/4.1/intro/tutorial02/).
+-> Si necesitamos resolver alguna configuración lo hacemos ahora.
 
-- Para cambiar zona horaria vamos a `mysite/settings.py` y cambiamos `TIME_ZONE = 'UTC'` por `TIME_ZONE = 'Europe/Madrid'`
-- Hacemos la migración para Django:
-```
-python manage.py migrate
-```
-- Creamos modelos `Question` y `Choice` en `polls/models.py`
-- Añadimos la app `polls`en `mysite/settings.py` en `INSTALLED_APPS`:
-```
-INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
-    ...
-    ]
-```
-- Creamos migraciones para los modelos:
-```
-python manage.py makemigrations polls
-```
-- Revisamos el SQL de la migración:
-```
-python manage.py sqlmigrate polls 0001
-```
-- Aplicamos la migración:
-```
-python manage.py migrate
-```
-### Insertando datos en la base de datos
-- Abrimos el shell:
-```
-python manage.py shell
-```
-- Seguimos estos pasos para insertar datos desde el shell: [consola de Django](https://docs.djangoproject.com/es/4.1/intro/tutorial02/#playing-with-the-api)
+* En `settings.py` como se pide el archivo `top_secret.txt`, en caso de que no lo encuentre debemos volverlo a crear con una llave privada para Django.
 
-## Panel admin
-- Crear superuser:
-```
-python manage.py createsuperuser
-```
-**Nota:** Podéis poner mismo admin y password para el entorno de dev de cada proyecto o app... El email se puede dejar en blanco presionando `Enter`.
+**Nota:** Este archivo no se trackea en el repositorio, por lo que cada quien debe crearlo en su máquina.
 
-- Ejecutamos la app y vamos a `/admin`:
-```
-python manage.py runserver
-```
-- Importamos modelo `Question` en `polls/admin.py`:
-```python
-from django.contrib import admin
+3. Creamos la app `class_views`:
 
-from .models import Question
-
-admin.site.register(Question)
 ```
+    python manage.py startapp class_views
+```
+
+4. Realizamos las migraciones necesarias para la nueva app en el proyecto:
+    
+```
+    python manage.py makemigrations
+    python manage.py migrate
+``` 
+
+5. Volvemos a levantar el servidor de desarrollo y verificamos que todo funcione correctamente.
+```
+    python manage.py runserver
+```
+
+6. Crear superuser de nuevo porque la bbdd se creo nueva ya que no hemos hecho seguimiento de los cambios en la rama `django_tutorial` (a la bbdd):
+```
+    python manage.py createsuperuser
+```
+
+7. Hacer migraciones -> `makemigrations` y `migrate` para la nueva app `class_views`:
+```
+    python manage.py makemigrations class_views
+    python manage.py migrate class_views
+```
+
+8. Quitamos algunos cambios previos de archivos de `mysite/templates` para que no salga lo de Polls (opcional)
+9. Logeamos en `/admin` y debemos ver que no hay nada de `class_views` aun.
+10. :)
