@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.views import View
 
-def index(request):
-    return render(request, 'index.html')
+class MyView(View):
+    def get(self, request):
+        result = "Esto es un string"
+        return HttpResponse(result)
