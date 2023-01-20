@@ -79,7 +79,21 @@ class CreateAnimalFormView(View):
 
 # Ejemplo #3 con libros y autores y editoriales
 # https://docs.djangoproject.com/en/4.1/topics/class-based-views/generic-display/
+
+# Vista de listado de Publishers
 class PublisherListView(ListView):
     model = Publisher
     template_name = 'publishers.html'
     context_object_name = 'publishers'
+
+# Vista de detalle de un Publisher
+class PublisherDetailView(DetailView):
+
+    model = Publisher
+    template_name = 'publisher.html'
+    context_object_name = 'publisher'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['book_list'] = Book.objects.all() # TODO: filtrar por publisher
+        return context
