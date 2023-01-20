@@ -11,13 +11,8 @@ from .forms import UpdateMemberForm
 
 import datetime
 
-# borrar
-def hello_world(request):
-    template = loader.get_template('hello_world.html')
-    return HttpResponse(template.render())
-
 # CRUD -> Member
-# Create
+# CREATE #
 def create_member(request):
   if request.method == 'POST':
         form = CreateMemberForm(request.POST)
@@ -41,7 +36,7 @@ def create_member(request):
       form = CreateMemberForm()
       return render(request, 'create_member.html', {'form': form})
 
-# Read
+# READ #
 # vista de todos los members -> read all / get all
 def all_members(request):
   my_members = Member.objects.all().values()
@@ -51,7 +46,7 @@ def all_members(request):
   }
   return HttpResponse(template.render(context, request))
 
-# vista de un member con id -> read one / get one / get by id
+# vista de un member con ID -> read one / get one / get by id
 def member(request, member_id):
     if not isinstance(member_id, int):
         return HttpResponse(f"Member id {member_id} no es válido. El id debe ser un entero positivo.")
@@ -68,7 +63,7 @@ def member(request, member_id):
     except Member.DoesNotExist as err:
         return HttpResponse(f"Member with id {member_id} does not exist. Error: {err}")
 
-# vista de un member con slug -> read one / get one / get by slug
+# vista de un member con SLUG -> read one / get one / get by slug
   # issue: cuando el firstname y lastname coinciden nos arroja error -> slug + id o slug + hash
 def details(request, slug):
   my_member = Member.objects.get(slug=slug)
@@ -78,7 +73,7 @@ def details(request, slug):
   }
   return HttpResponse(template.render(context, request))  
 
-# Update
+# UPDATE #
 def update_member(request, slug):
   #member = Member.objects.get(slug=slug)
   #if member.slug == slug:
@@ -109,7 +104,7 @@ def update_member(request, slug):
     form = UpdateMemberForm()
     return render(request, 'update_member.html', {'form': form, 'current_member_values': current_member_values, 'slug': slug})
 
-# Delete
+# DELETE
 def delete_member(request, slug):
   #member = Member.objects.get(slug=slug) # si el slug no existe nos arroja error
   member = Member.objects.filter(slug=slug).first()
@@ -123,135 +118,3 @@ def delete_member(request, slug):
   else:
     error = f"El member {slug} no existe."
     return render(request, 'delete_member.html', {'error': error})
-
-# main.html -> home
-def main(request):
-    template = loader.get_template('main.html')
-    return HttpResponse(template.render())
-
-# borrar
-def pagina(request):
-    template = loader.get_template("pagina.html")
-    return HttpResponse(template.render())
-
-# borrar
-def testing(request):
-  template = loader.get_template('testing.html')
-  members = Member.objects.all().values()
-  cars = [
-    {
-        "brand": "Ford",
-        "model": "Mustang",
-        "doors": 3,
-        "year": "1990",
-    },
-    {
-        "brand": "Ford",
-        "model": "Sierra",
-        "doors": 5,
-        "year": "1980",
-    },
-    {
-        "brand": "Ford",
-        "model": "Bronco",
-        "doors": 5,
-        "year": "1960",
-    },
-    {
-        "brand": "Volvo",
-        "model": "XC90",
-        "doors": 5,
-        "year": "1960",
-    },
-    {
-        "brand": "Volvo",
-        "model": "P1800",
-        "doors": 2,
-        "year": "1990",
-    }]
-  # Ordenamos los coches para que regroup funcione correctamente
-  sorted_cars = sorted(cars, key=lambda x: x["year"])
-  # Si esta desordenado -> regroup no agrupa bien
-  context = {
-    'frutas': ['Apple', 'Banana', 'Cherry', 'Pineapple'],
-    'members': members,
-    'heading_no_esc' : "<h1>Heading1</h1>",
-    'heading_esc' : "&lt;h1&gt;Heading1&lt;/h1&gt;",
-    'html' : """<div>
-                  <p>
-                    <ul>
-                      <li>Algo</li>
-                    </ul>
-                  </p>
-                </div>
-              """,
-    'colors': ['Red', None, 'Blue', '', 'Yellow'],
-    'meses' : [ "Enero" , "Febrero" , "Marzo" , "Abril" , "Mayo" , "Junio" , "Julio" , "Agosto" , "Septiembre" , "Octubre" , "Noviembre" , "Diciembre"],
-    'meses_2' : {
-                "January" : "Enero"
-                , "February" : "Febrero"
-                , "March" : "Marzo"
-                , "April" : "Abril"
-                , "May" : "Mayo"
-                , "June" : "Junio"
-                , "July" : "Julio"
-                , "August" : "Agosto"
-                , "September" : "Septiembre"
-                , "October" : "Octubre"
-                , "November" : "Noviembre"
-                , "December" : "Diciembre"
-                },
-    'texto': """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Esto es un texto con múltiples líneas.
-
-    Salto de línea doble.
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.""",
-    "phone" : "123-Django",
-    "lista" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    "lista_2" : [1, 2, 3, 5, 5, 5, 5, 8, 9, 10],
-    "texto_2" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
-    "texto_3" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-    "total_price" : 100,
-    "total_price_2" : False,
-    "total_price_3" : None,
-    'date_1': datetime.datetime(2000, 1, 1),   
-    'date_2': datetime.datetime(2023, 1, 1), 
-    'date_3': datetime.datetime(2050, 1, 1),
-    'cars' : [
-    {
-        "brand": "Ford",
-        "model": "Mustang",
-        "doors": 3,
-        "year": "1950",
-    },
-    {
-        "brand": "Ford",
-        "model": "Sierra",
-        "doors": 5,
-        "year": "1960",
-    },
-    {
-        "brand": "Ford",
-        "model": "Bronco",
-        "doors": 5,
-        "year": "1960",
-    },
-    {
-        "brand": "Volvo",
-        "model": "XC90",
-        "doors": 5,
-        "year": "1960",
-    },
-    {
-        "brand": "Volvo",
-        "model": "P1800",
-        "doors": 2,
-        "year": "1990",
-    }],
-    'sorted_cars' : sorted_cars,
-    'code': """{% for x in fruits %}
-    {{ x }}
-    {% endfor %}"""
-  }
-  return HttpResponse(template.render(context, request))
