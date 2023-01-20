@@ -18,7 +18,7 @@ class MyView(View):
 class SubClaseView(MyView):
     variable_en_clase = "String desde subclase"
     def get(self, request):
-        return HttpResponse(f"Hola desde subclase.")
+        return HttpResponse(f"index")
     
 # Ejemplo con animales y perros y gatos
 class AnimalListView(generic.ListView):
@@ -43,9 +43,18 @@ class Gato(AnimalView):
     animal = "Gato"
     sonido = "Miau"
         
+# TODO: personalizar msg pasando param / args
 class SuccessView(View):
+    template_name = 'success.html'
+    msg = "Formulario enviado correctamente."
     def get(self, request):
-        return HttpResponse("Formulario enviado correctamente.")
+        return render(request, self.template_name, {'msg': self.msg})
+# TODO: personalizar msg pasando param / args -> considerar si fusionar estas dos clases en una sola
+class ErrorView(View):
+    template_name = 'error.html'
+    error = "Error al enviar el formulario. Vuelve a intertarlo."
+    def get(self, request):
+        return render(request, self.template_name, {'error': self.error})
     
 class CreateAnimalFormView(View):
     form_class = CreateAnimalForm
@@ -59,7 +68,8 @@ class CreateAnimalFormView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect(reverse('class_views:success'))
-
-        return render(request, self.template_name, {'form': form})
+            form.save()
+            return HttpResponseRedirect(reverse('class_views:success')) 
+        else:
+            return HttpResponseRedirect(reverse('class_views:error'))
+        #return render(request, self.template_name, {'form': form})
