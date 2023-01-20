@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Index{% endblock %}</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <!-- Bootrstap Hoja de Estilos -->
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="{% static 'bootstrap-icons.css' %}">
+  <!-- Hoja principal de estilos -->
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="topnav mb-3">
+    <a href="/">HOME</a> |
+    <a href="/animal/perro">PERRO</a>
+    <a href="/animal/gato">GATO</a>
+  </div>
+  {% block content %}
+  {% endblock %}
+</div>
+
+</body>
+</html>

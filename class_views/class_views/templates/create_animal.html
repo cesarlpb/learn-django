@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <div class="col-6 mx-auto">
+        {% comment "Por ahora no usamos esta sección" %}
+        {% if msg %}
+            <div class="alert alert-success" role="alert">
+                {{ msg }}
+            </div>
+            <div>
+                <ul><li>
+                    <a href="/">Volver a Inicio</a>
+                </li></ul>
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        {% endcomment %}
+
+        {% if form %}
+        <h1 class="mt-3 mb-5">Crear Animal</h1>
+        <form action="{% url 'class_views:create_animal' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary px-2 mt-3" value="Crear Animal">
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}
