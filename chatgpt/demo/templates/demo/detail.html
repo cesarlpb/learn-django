@@ -6,7 +6,7 @@
 <div class="container col-4 mx-auto">
     {% if query %}
     <h2>{{ query.id }} - {{ query.prompt }}</h2>
-        <table class="mx-auto">
+        <table class="table mx-auto">
             {% for field in query %}
                 <tr>
                     <td class="col-6"><strong>{{ field }}:</strong></td> 
