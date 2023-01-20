@@ -6,6 +6,7 @@ from class_views.views import SubClaseView
 
 # Ejemplo con animales y perros y gatos
 from class_views.views import Perro, Gato, CreateAnimalFormView, SuccessView, ErrorView, AnimalListView
+from class_views.views import PublisherListView
 
 app_name = 'class_views'
 urlpatterns = [
@@ -15,7 +16,8 @@ urlpatterns = [
     path('animal/', AnimalListView.as_view(), name='animal'),                                     
     path('animal/create/', CreateAnimalFormView.as_view(), name='create_animal'),
     path('animal/perro/', Perro.as_view(), name='perro'),
-    path('animal/gato/', Gato.as_view(), name='gato')
+    path('animal/gato/', Gato.as_view(), name='gato'),
+    path('publishers/', PublisherListView.as_view()),
 ]
 """
  path('', views.IndexView.as_view(), name='index')

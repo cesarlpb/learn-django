@@ -1,13 +1,16 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View, generic
+
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
 from django.shortcuts import render
 from django.urls import reverse
 
 from .forms import CreateAnimalForm
-from .models import Animal
+from .models import Animal, Publisher, Author, Book
 
+# Ejemplo #1
 variable_global = "Esto es un string global"
-
 class MyView(View):
     necesita_self = "Esto es un string en la clase"
     variable_en_clase = "Este contenido no saldrá en la respuesta"
@@ -20,7 +23,7 @@ class SubClaseView(MyView):
     def get(self, request):
         return HttpResponse(f"index")
     
-# Ejemplo con animales y perros y gatos
+# Ejemplo #2 con animales y perros y gatos
 class AnimalListView(generic.ListView):
     model = Animal
     template_name = 'animal.html'
@@ -73,3 +76,10 @@ class CreateAnimalFormView(View):
         else:
             return HttpResponseRedirect(reverse('class_views:error'))
         #return render(request, self.template_name, {'form': form})
+
+# Ejemplo #3 con libros y autores y editoriales
+# https://docs.djangoproject.com/en/4.1/topics/class-based-views/generic-display/
+class PublisherListView(ListView):
+    model = Publisher
+    template_name = 'publishers.html'
+    context_object_name = 'publishers'
