@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="container col-4">
+
+    <ul>
+        {% for animal in animals %}
+            <li><strong>{{ animal.name }}</strong></li>
+            <li>{{ animal.species }}</li>
+            <li>{{ animal.sound }}</li>
+            <hr>
+        {% endfor %}
+        
+    </ul>
+</div>
+{% endblock %}

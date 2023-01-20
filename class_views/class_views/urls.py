@@ -5,12 +5,13 @@ from django.urls import path
 from class_views.views import SubClaseView
 
 # Ejemplo con animales y perros y gatos
-from class_views.views import Perro, Gato, CreateAnimalFormView, SuccessView
+from class_views.views import Perro, Gato, CreateAnimalFormView, SuccessView, AnimalListView
 
 app_name = 'class_views'
 urlpatterns = [
     path('', SubClaseView.as_view(), name='index'),
     path('success/', SuccessView.as_view(), name='success'),
+    path('animal/', AnimalListView.as_view(), name='animal'),                                     
     path('animal/create/', CreateAnimalFormView.as_view(), name='create_animal'),
     path('animal/perro/', Perro.as_view(), name='perro'),
     path('animal/gato/', Gato.as_view(), name='gato')

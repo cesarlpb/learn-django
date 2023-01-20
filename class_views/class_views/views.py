@@ -1,9 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views import View
+from django.views import View, generic
 from django.shortcuts import render
 from django.urls import reverse
 
 from .forms import CreateAnimalForm
+from .models import Animal
 
 variable_global = "Esto es un string global"
 
@@ -20,17 +21,25 @@ class SubClaseView(MyView):
         return HttpResponse(f"Hola desde subclase.")
     
 # Ejemplo con animales y perros y gatos
-class Animal(View):
+class AnimalListView(generic.ListView):
+    model = Animal
+    template_name = 'animal.html'
+    context_object_name = 'animals'
+    def get_queryset(self):
+        """Retornamos los Animales de la bbdd"""
+        return Animal.objects.all().values()
+
+class AnimalView(View):
     animal = "Animal"
     sonido = "Sonido del animal"
     def get(self, request):
         return HttpResponse(f"{self.animal}: {self.sonido}")
 
-class Perro(Animal):
+class Perro(AnimalView):
     animal = "Perro"
     sonido = "Guau"
 
-class Gato(Animal):
+class Gato(AnimalView):
     animal = "Gato"
     sonido = "Miau"
         
