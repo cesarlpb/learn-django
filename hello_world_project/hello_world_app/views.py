@@ -118,3 +118,8 @@ def delete_member(request, slug):
   else:
     error = f"El member {slug} no existe."
     return render(request, 'delete_member.html', {'error': error})
+def home(request):
+   return render(request, 'home.html')
+# página de perros y gatos con modelo de Tensorflow
+def modelo(request):
+    return render(request, 'modelo.html')
