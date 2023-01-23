@@ -1,12 +1,15 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
 app_name = 'demo'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    path('new_query/', views.new_query, name='new_query'),
+    path('', views.HomeView.as_view(), name='home'),
+    path('demo/', include([
+        path('', views.IndexView.as_view(), name='index'),
+        path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+        path('new_query/', views.new_query, name='new_query'),
+    ])),
 ]
 
 """

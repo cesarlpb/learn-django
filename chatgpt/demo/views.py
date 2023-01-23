@@ -1,8 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views import generic
+from django.urls import reverse, get_resolver
+from django.views import generic, View
 from django.utils import timezone
+from django.urls import resolve, Resolver404
+from django.urls import include, path
+from inspect import isclass
 
 from .models import ChatGptQuery
 
@@ -12,6 +15,13 @@ import requests
 import json
 
 APP_DIR = 'demo'
+
+from django.urls import reverse
+
+class HomeView(View):
+    def get(self, request):
+        urls = [reverse('demo:home'), reverse('demo:index'), reverse('demo:detail', kwargs={'pk': 1}), reverse('demo:new_query')]
+        return render(request, 'demo/home.html', {'urls': urls})
 
 class IndexView(generic.ListView):
     template_name = f'{APP_DIR}/index.html'
@@ -50,7 +60,7 @@ def new_query(request):
   if request.method == 'POST':
         form = NewQueryForm(request.POST)
         if form.is_valid():
-          with(open('chatgpt/demo/queries.txt', 'r')) as f:
+          with(open('chatgpt/demo/api_key.txt', 'r')) as f:
               api_key = f.read()
           query = form.save(commit=False)
           prompt = form.cleaned_data["prompt"] 
@@ -59,7 +69,7 @@ def new_query(request):
           return HttpResponseRedirect(reverse('demo:response', args=(query.id,), kwargs={'prompt' : prompt, 'response' : response}))
         else: 
           error = "Not valid form"
-          return render(request, f'{APP_DIR}/response.html', {'error': error})
+          return render(request, f'{APP_DIR}/new_query.html', {'error': error})
   elif request.method == 'GET':
       form = NewQueryForm()
-      return render(request, f'{APP_DIR}/response.html', {'form': form})
+      return render(request, f'{APP_DIR}/new_query.html', {'form': form})

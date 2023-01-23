@@ -1,0 +1,14 @@
+{% extends "demo/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container col-6">
+        {{ urls }}
+        <ul class="mx-auto" style="list-style-type: none; padding-left: 0;">
+        {% for url in urls %}
+            <li><a href="{{ url }}">{{ url }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
