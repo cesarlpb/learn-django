@@ -133,3 +133,6 @@ dmypy.json
 productionfiles/
 
 .DS_Store
+
+top_secret.txt
+top_secret_*.txt
