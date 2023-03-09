@@ -136,3 +136,5 @@ productionfiles/
 
 top_secret.txt
 top_secret_*.txt
+
+secret.txt
