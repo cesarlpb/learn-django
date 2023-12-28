@@ -6,6 +6,11 @@
   <title>Login</title>
 </head>
 <body>
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">
+    {{ message }}
+  </div>
+  {% endfor %}
   <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
     <label for="">Usuario:</label>
