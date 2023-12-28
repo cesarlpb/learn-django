@@ -17,3 +17,26 @@ python3 -m django --version
 django-admin startproject <nombre_de_tu_app> .
 ```
 5. Deberías ver una carpeta con el nombre `<nombre_de_tu_app>`
+
+## Comandos
+
+Crear venv:
+```
+    python3 -m virtualenv venv
+```
+Activar venv en Mac/Linux:
+```
+    source venv/bin/activate
+```
+Activar venv en Windows:
+```
+    venv\Scripts\activate
+```
+Desactivar venv:
+```
+    deactivate
+``` 
+Instalar Django:
+```
+    pip install django
+```
