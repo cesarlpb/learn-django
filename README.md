@@ -8,6 +8,7 @@ Esta ocasión, seguimos los pasos de https://www.w3schools.com/django/django_get
 1. Crear entorno virtual y activarlo
 2. Instalar Django: 
 ```
+
 python -m pip install Django
 ```
 3. Ver versión de Django:
