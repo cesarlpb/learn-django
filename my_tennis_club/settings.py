@@ -76,13 +76,33 @@ WSGI_APPLICATION = "my_tennis_club.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
+POSTGRES_PASSWORD = ''
+POSTGRES_HOST = ''
+with open('/Users/cesarlpb/Code/Personal_Projects/learn-django/my_tennis_club/.env', 'r') as f:
+    lines = f.readlines()
+    for item in lines:
+        if 'POSTGRES_PASSWORD' in item:
+            POSTGRES_PASSWORD = item.split('=')[1].strip()
+        if 'POSTGRES_HOST' in item:
+            POSTGRES_HOST = item.split('=')[1].strip()
+
+DATABASES = { 
+    'default': { 
+        'ENGINE': 'django.db.backends.postgresql', 
+        'NAME': 'postgres', 
+        'USER': 'postgres', 
+        'PASSWORD': f"{POSTGRES_PASSWORD}",
+        'HOST': f"{POSTGRES_HOST}", 
+        'PORT': '5432' 
+    } 
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
