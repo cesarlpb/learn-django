@@ -40,3 +40,20 @@ Instalar Django:
 ```
     pip install django
 ```
+
+## PM2 
+
+1. Copiar el archivo `pm2.json` a vuestro proyecto
+2. Cambiar datos como `nombre de app`, `puerto`, etc.
+3. Iniciar proceso:
+```
+    pm2 start pm2.json
+```
+4. Para mirar log:
+```
+    pm2 ls
+```
+y usando el id de la izquierda:
+```
+    pm2 log <id>
+```

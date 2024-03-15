@@ -4,6 +4,7 @@ from django.contrib import messages
 
 def index(request):
     # Llamar a db, etc...
+    print("Han solicitado index.html")
     return render(request, "index.html")
 
 def login(request):
