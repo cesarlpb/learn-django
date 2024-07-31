@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <a href="{% url 'producto_create' %}">Crear Producto</a>
+    <ul>
+        {% for producto in object_list %}
+            <li>
+                <a href="{% url 'producto_detail' producto.pk %}">{{ producto.nombre }}</a> - {{ producto.precio }}
+                <a href="{% url 'producto_update' producto.pk %}">Editar</a>
+                <a href="{% url 'producto_delete' producto.pk %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{% url 'index' %}">Volver a la página de inicio</a>
+</body>
+</html>
+
+
+
+

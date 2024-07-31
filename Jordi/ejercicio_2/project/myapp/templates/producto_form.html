@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if object %}Editar{% else %}Crear{% endif %} Producto</title>
+</head>
+<body>
+    <h1>{% if object %}Editar{% else %}Crear{% endif %} Producto</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if object %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+    <a href="{% url 'producto_list' %}">Volver a la lista</a>
+</body>
+</html>
+
+
+
