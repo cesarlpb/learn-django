@@ -1,0 +1,22 @@
+{% load custom_filters %}
+
+<h1>Detalle de la Factura {{ factura.id }}</h1>
+<p>Cliente: {{ factura.cliente.nombre }}</p>
+<p>Fecha: {{ factura.fecha }}</p>
+<table>
+    <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Total</th>
+    </tr>
+    {% for pf in productos_factura %}
+    <tr>
+        <td>{{ pf.producto.nombre }}</td>
+        <td>{{ pf.cantidad }}</td>
+        <td>{{ pf.producto.precio }}</td>
+        <td>{{ pf.producto.precio|multiply:pf.cantidad }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p>Total: {{ total }}</p>
